@@ -10,7 +10,8 @@ class LayoutWindow(QWidget):
         self.initializeUI()
 
     def initializeUI(self):
-        self.setWindowTitle('Subject Infomation')
+        # self.setWindowTitle('Subject Infomation')
+        self.setWindowTitle('TEST')
         self.setGeometry(150, 100, 1000, 850)
         self.showVBoxLayout()
         self.show()
