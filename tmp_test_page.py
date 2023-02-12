@@ -9,9 +9,11 @@ import pandas as pd
 form_2nd_cls = uic.loadUiType("ui/test_widget.ui")[0]
 from confidence_page import ThirdWindowCls
 
-class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
+#class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
+class tmpSecondWindowCls(QDialog, QWidget, form_2nd_cls):
     def __init__(self, mainInfoDict):
-        super(SecondWindowCls, self).__init__()
+        #super(SecondWindowCls, self).__init__()
+        super(tmpSecondWindowCls, self).__init__()
         self.initUi(mainInfoDict)
         # self.initUi()
         self.show()
@@ -73,14 +75,14 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.infoDict['idxCnt'] += 1
         self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
 
-        self.hide()
-        self.third = ThirdWindowCls(self.infoDict, self.testCnt)
-        self.third.exec()
-        self.show()
+        # self.hide()
+        # self.third = ThirdWindowCls(self.infoDict, self.testCnt)
+        # self.third.exec()
+        # self.show()
 
         self.testCnt += 1
 
-        if self.testCnt < 5:
+        if self.testCnt < 6:
             self.updateUI()
         else:
             self.close()
