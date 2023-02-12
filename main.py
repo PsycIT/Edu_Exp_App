@@ -13,6 +13,9 @@ class LayoutWindow(QWidget):
         # self.setWindowTitle('Subject Infomation')
         self.setWindowTitle('TEST')
         self.setGeometry(150, 100, 1000, 850)
+        self.questIdx = 1
+
+
         self.showVBoxLayout()
         self.show()
 
@@ -33,35 +36,43 @@ class LayoutWindow(QWidget):
         nameText.resize(50, 20)
         nameText.setText("정인택")
 
-        # test 유형
+        # TEST 유형
         titleText = QLabel(self)
         titleText.setText("Pre-test (경제)")
         titleText.resize(100, 20)
 
-        # test 회차
+        # TEST 회차
         expCntText = QLabel(self)
         expCntText.setText("1회차")
         expCntText.resize(50, 20)
 
-
-        # Test Infomation (문제지, 선택지, 잔여문제 정보)
+        # TEST Infomation (문제지, 선택지, 잔여문제 정보, 제출 버튼)
         # 문제지
-        questPixmap = QPixmap("questions/1.jpg")
+        questPixmap = QPixmap("imgs/questions/1.jpg")
         questLabel = QLabel(self)
         questLabel.setPixmap(questPixmap)
         questLabel.setContentsMargins(10, 10, 10, 10)
         questLabel.resize(questPixmap.width(), questPixmap.height())
 
         # 선택지
-        ansRBtn1 = QRadioButton('1', self)
-        ansRBtn2 = QRadioButton('2', self)
-        ansRBtn3 = QRadioButton('3', self)
-        ansRBtn4 = QRadioButton('4', self)
-        ansRBtn5 = QRadioButton('5', self)
+        self.ansRBtn1 = QRadioButton('1', self)
+        self.ansRBtn1.clicked.connect(self.radioBtn_clicked)
+        self.ansRBtn2 = QRadioButton('2', self)
+        self.ansRBtn2.clicked.connect(self.radioBtn_clicked)
+        self.ansRBtn3 = QRadioButton('3', self)
+        self.ansRBtn3.clicked.connect(self.radioBtn_clicked)
+        self.ansRBtn4 = QRadioButton('4', self)
+        self.ansRBtn4.clicked.connect(self.radioBtn_clicked)
+        self.ansRBtn5 = QRadioButton('5', self)
+        self.ansRBtn5.clicked.connect(self.radioBtn_clicked)
 
         # 잔여문제
         questCntLabel = QLabel(self)
         questCntLabel.setText("1 / 10")
+
+        # 제출버튼
+        submitBtn = QPushButton('제출하기')
+        submitBtn.setStyleSheet('border-image:url(./imgs/submitBtn.png) ;border;0px;')
 
 
         # Layout 설정
@@ -89,11 +100,11 @@ class LayoutWindow(QWidget):
 
         # 선택지 layout
         lMidInnnerLayout = QHBoxLayout()
-        lMidInnnerLayout.addWidget(ansRBtn1)
-        lMidInnnerLayout.addWidget(ansRBtn2)
-        lMidInnnerLayout.addWidget(ansRBtn3)
-        lMidInnnerLayout.addWidget(ansRBtn4)
-        lMidInnnerLayout.addWidget(ansRBtn5)
+        lMidInnnerLayout.addWidget(self.ansRBtn1)
+        lMidInnnerLayout.addWidget(self.ansRBtn2)
+        lMidInnnerLayout.addWidget(self.ansRBtn3)
+        lMidInnnerLayout.addWidget(self.ansRBtn4)
+        lMidInnnerLayout.addWidget(self.ansRBtn5)
         lMidInnnerLayout.addStretch(1)
         ansGroupBox.setLayout(lMidInnnerLayout)
 
@@ -110,7 +121,7 @@ class LayoutWindow(QWidget):
 
         rightLayout = QVBoxLayout()
         rightLayout.addWidget(d_btn)
-        rightLayout.addWidget(e_btn)
+        rightLayout.addWidget(submitBtn, alignment=Qt.AlignBottom)
 
         downLayout = QHBoxLayout()
         downLayout.addStretch(1)
@@ -128,6 +139,21 @@ class LayoutWindow(QWidget):
         self.setLayout(layout)
 
 
+
+    def radioBtn_clicked(self):
+        msg = ""
+        if self.ansRBtn1.isChecked():
+            msg = "항목 1"
+        elif self.ansRBtn2.isChecked():
+            msg = "항목 2"
+        elif self.ansRBtn3.isChecked():
+            msg = "항목 3"
+        elif self.ansRBtn4.isChecked():
+            msg = "항목 4"
+        elif self.ansRBtn5.isChecked():
+            msg = "항목 5"
+
+        QMessageBox.about(self, '선택된 항목', msg+'선택됨')
 
 
 
