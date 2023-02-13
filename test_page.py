@@ -91,6 +91,9 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
+        stateOfTestCnt = str(self.testCnt) + ' / 5'
+        self.testCntLabel.setText(stateOfTestCnt)
+
         self.teStartTs = self.get_now_timestamp()
         self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1]],
                                index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
