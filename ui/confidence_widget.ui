@@ -36,7 +36,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>671</width>
+      <width>691</width>
       <height>61</height>
      </rect>
     </property>
@@ -54,7 +54,7 @@
       <rect>
        <x>60</x>
        <y>19</y>
-       <width>501</width>
+       <width>561</width>
        <height>31</height>
       </rect>
      </property>
@@ -73,7 +73,7 @@
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>671</width>
+      <width>691</width>
       <height>91</height>
      </rect>
     </property>
@@ -221,7 +221,7 @@
    <widget class="QPushButton" name="cnfSubmitBtn">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>710</x>
       <y>110</y>
       <width>101</width>
       <height>81</height>
@@ -239,7 +239,7 @@
    <widget class="QGroupBox" name="etcGBox">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>710</x>
       <y>20</y>
       <width>101</width>
       <height>61</height>
