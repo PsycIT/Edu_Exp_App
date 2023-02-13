@@ -57,32 +57,35 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
 
     def cnfSubmitBtn_cicked(self):
         # QMessageBox.about(self, '선택정답', str(self.cnfAns)+'번')
-        self.cnfEndTs = self.get_now_timestamp()
-
-        # confidence 받아오는 창 다녀오기 필요
-
-        statusMsg = ""
-        if self.cnfCnt < 5:
-            statusMsg = 'CONF'+str(self.cnfCnt)+'_END&TE'+str(self.cnfCnt+1)+'_START'
+        if self.cnfAns == 0:
+            QMessageBox.information(self, 'error!', '신뢰도를 선택하세요!')
         else:
-            statusMsg = 'CONF'+str(self.cnfCnt)+'_END'
+            self.cnfEndTs = self.get_now_timestamp()
 
-        # # self.df2.append({'status':'TE'+str(self.cnfCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
-        # self.df4 = pd.DataFrame([['CONF'+str(self.cnfCnt)+'_END&TE'+str(self.cnfCnt+1)+'_START', self.cnfEndTs, -1, self.cnfAns]],
-        #                         index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
-        self.df4 = pd.DataFrame([[statusMsg, self.cnfEndTs, -1, self.cnfAns]])
-        self.infoDict['idxCnt'] += 1
-        self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
+            # confidence 받아오는 창 다녀오기 필요
 
-        self.cnfCnt += 1
+            statusMsg = ""
+            if self.cnfCnt < 5:
+                statusMsg = 'CONF'+str(self.cnfCnt)+'_END&TE'+str(self.cnfCnt+1)+'_START'
+            else:
+                statusMsg = 'CONF'+str(self.cnfCnt)+'_END'
 
-        self.hide()
+            # # self.df2.append({'status':'TE'+str(self.cnfCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
+            # self.df4 = pd.DataFrame([['CONF'+str(self.cnfCnt)+'_END&TE'+str(self.cnfCnt+1)+'_START', self.cnfEndTs, -1, self.cnfAns]],
+            #                         index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
+            self.df4 = pd.DataFrame([[statusMsg, self.cnfEndTs, -1, self.cnfAns]])
+            self.infoDict['idxCnt'] += 1
+            self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
 
-        if self.cnfCnt < 6 :
-            self.parent_widget.show()
-        else:
-            self.close()
-        # sys.exit(ui.exec_())
+            self.cnfCnt += 1
+
+            self.hide()
+
+            if self.cnfCnt < 6 :
+                self.parent_widget.show()
+            else:
+                self.close()
+            # sys.exit(ui.exec_())
 
 
     def get_now(self):
