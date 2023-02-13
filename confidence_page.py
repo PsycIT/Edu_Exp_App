@@ -56,7 +56,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
 
 
     def cnfSubmitBtn_cicked(self):
-        QMessageBox.about(self, '선택정답', str(self.cnfAns)+'번')
+        # QMessageBox.about(self, '선택정답', str(self.cnfAns)+'번')
         self.cnfEndTs = self.get_now_timestamp()
 
         # confidence 받아오는 창 다녀오기 필요

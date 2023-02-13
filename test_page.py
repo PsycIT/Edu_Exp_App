@@ -85,31 +85,42 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
 
     def teSubmitBtn_cicked(self):
-        QMessageBox.about(self, '선택정답', str(self.teAns)+'번')
-        self.teEndTs = self.get_now_timestamp()
+        # QMessageBox.about(self, '선택정답', str(self.teAns)+'번')
+        if self.teAns == 0:
+            QMessageBox.information(self, 'error!', '정답을 선택하세요!')
 
-        # self.df2.append({'status':'TE'+str(self.testCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
-        self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END&CONF'+str(self.testCnt)+'_START', self.teEndTs, self.teAns, -1]],
-                                index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
-        self.infoDict['idxCnt'] += 1
-        self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
-
-        self.hide()
-        self.confidence_page = ThirdWindowCls(self.infoDict, self.testCnt, self)
-        # self.third = ThirdWindowCls(self.infoDict, self.testCnt)
-        # self.third.exec()
-        # self.show()
-
-
-        if self.testCnt < 6:
-            self.testCnt += 1
-            self.confidence_page.show()
-            self.updateUI()
         else:
-            self.close()
+            self.teEndTs = self.get_now_timestamp()
+
+            # self.df2.append({'status':'TE'+str(self.testCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
+            self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END&CONF'+str(self.testCnt)+'_START', self.teEndTs, self.teAns, -1]],
+                                    index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
+            self.infoDict['idxCnt'] += 1
+            self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
+
+            self.hide()
+            self.confidence_page = ThirdWindowCls(self.infoDict, self.testCnt, self)
+            # self.third = ThirdWindowCls(self.infoDict, self.testCnt)
+            # self.third.exec()
+            # self.show()
+
+
+            if self.testCnt < 6:
+                self.testCnt += 1
+                self.confidence_page.show()
+                self.updateUI()
+            else:
+                self.close()
 
 
     def updateUI(self):
+        # if self.teAns == 1: self.ansRBtn1.setChecked(False)
+        # elif self.teAns == 2: self.ansRBtn2.setChecked(False)
+        # elif self.teAns == 3: self.ansRBtn3.setChecked(False)
+        # elif self.teAns == 4: self.ansRBtn4.setChecked(False)
+        # elif self.teAns == 5: self.ansRBtn5.setChecked(False)
+        print('teAns is ', self.teAns)
+
         self.teAns = 0
         if self.expTypeLabel2.text() == 'Pre-Test':
             self.imgIdx = self.testCnt * 2 - 1
@@ -122,6 +133,8 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         stateOfTestCnt = str(self.testCnt) + ' / 5'
         self.testCntLabel.setText(stateOfTestCnt)
+
+
 
         # self.teStartTs = self.get_now_timestamp()
         # self.df2 = pd.DataFrame([['CONF'+str(self.testCnt-1)+'_START', self.teStartTs, -1, -1]],
