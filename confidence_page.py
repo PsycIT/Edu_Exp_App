@@ -82,6 +82,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
             self.hide()
 
             if self.cnfCnt < 6 :
+                self.parent_widget.updateUI()
                 self.parent_widget.show()
             else:
                 self.close()

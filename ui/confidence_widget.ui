@@ -25,7 +25,7 @@
    <property name="font">
     <font>
      <family>나눔스퀘어_ac</family>
-     <pointsize>8</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="title">
@@ -40,21 +40,27 @@
       <height>61</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>나눔스퀘어_ac</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>문제지</string>
     </property>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>80</x>
        <y>30</y>
-       <width>321</width>
+       <width>471</width>
        <height>16</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -68,8 +74,13 @@
       <x>10</x>
       <y>100</y>
       <width>611</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="title">
      <string>선택지</string>
@@ -77,11 +88,16 @@
     <widget class="QRadioButton" name="cnfRBtn1">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
+       <x>20</x>
+       <y>30</y>
        <width>31</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>1</string>
@@ -90,11 +106,16 @@
     <widget class="QRadioButton" name="cnfRBtn2">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>20</y>
+       <x>130</x>
+       <y>30</y>
        <width>31</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>2</string>
@@ -103,11 +124,16 @@
     <widget class="QRadioButton" name="cnfRBtn3">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>20</y>
+       <x>250</x>
+       <y>30</y>
        <width>31</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>3</string>
@@ -116,11 +142,16 @@
     <widget class="QRadioButton" name="cnfRBtn4">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>20</y>
+       <x>350</x>
+       <y>30</y>
        <width>31</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>4</string>
@@ -129,11 +160,16 @@
     <widget class="QRadioButton" name="cnfRBtn5">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>20</y>
+       <x>450</x>
+       <y>30</y>
        <width>31</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>5</string>
@@ -143,7 +179,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>60</y>
        <width>51</width>
        <height>16</height>
       </rect>
@@ -156,7 +192,7 @@
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>50</y>
+       <y>60</y>
        <width>51</width>
        <height>16</height>
       </rect>
@@ -188,12 +224,12 @@
       <x>630</x>
       <y>110</y>
       <width>101</width>
-      <height>71</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">

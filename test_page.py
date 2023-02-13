@@ -24,8 +24,13 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.ansRBtn4.clicked.connect(self.radioBtn_clicked)
         self.ansRBtn5.clicked.connect(self.radioBtn_clicked)
 
+        self.rBtnList = [self.ansRBtn1, self.ansRBtn2, self.ansRBtn3, self.ansRBtn4, self.ansRBtn5]
+        self.radioGroup = QButtonGroup()
+
+        for i, rbtn in enumerate(self.rBtnList, 1):
+            self.radioGroup.addButton(rbtn, i)
+
         self.teSubmitBtn.clicked.connect(self.teSubmitBtn_cicked)
-        self.homeBtn.clicked.connect(self.homeBtn_cicked)
 
 
     def initUi(self, mainInfo):
@@ -34,7 +39,6 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         self.infoDict = mainInfo
         self.testCnt = 1
-        self.lectureCnt = 1
         self.teStartTs = self.get_now_timestamp()
 
         self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1]],
@@ -49,16 +53,10 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.expTypeLabel2.setText(self.infoDict['expType'])
 
         self.testIdxList = []
-        # if self.expTypeLabel2.text() == 'Pre-Test':
-        #     self.testIdxList = [1, 3, 5, 7, 9]
-        # else:
-        #     self.testIdxList = [0, 2, 4, 6, 8]
-        # print(self.testIdxList)
 
         self.imgFullPath = 'imgs/resizing2/' + str(self.testCnt) + '/'
         self.imgList = os.listdir(self.imgFullPath)
         self.imgList.sort()
-
 
         self.teAns = 0
 
@@ -107,25 +105,27 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
             if self.testCnt < 6:
                 self.testCnt += 1
+                # self.updateUI()
                 self.confidence_page.show()
-                self.updateUI()
             else:
                 self.close()
 
 
     def updateUI(self):
-        # if self.teAns == 1: self.ansRBtn1.setChecked(False)
-        # elif self.teAns == 2: self.ansRBtn2.setChecked(False)
-        # elif self.teAns == 3: self.ansRBtn3.setChecked(False)
-        # elif self.teAns == 4: self.ansRBtn4.setChecked(False)
-        # elif self.teAns == 5: self.ansRBtn5.setChecked(False)
-        print('teAns is ', self.teAns)
+        self.radioGroup.setExclusive(False)
+        self.ansRBtn1.setChecked(False)
+        self.ansRBtn2.setChecked(False)
+        self.ansRBtn3.setChecked(False)
+        self.ansRBtn4.setChecked(False)
+        self.ansRBtn5.setChecked(False)
+        self.radioGroup.setExclusive(True)
 
         self.teAns = 0
         if self.expTypeLabel2.text() == 'Pre-Test':
             self.imgIdx = self.testCnt * 2 - 1
         else:
             self.imgIdx = self.testCnt * 2 - 2
+
 
         questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
         self.testLabel.setPixmap(questPixmap)
@@ -142,12 +142,6 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         # self.infoDict['idxCnt'] += 1
 
         # self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
-
-
-    def homeBtn_cicked(self):
-
-        self.close()
-
 
     def get_now(self):
         # 현재 시스템 시간을 datetime형으로 반환
