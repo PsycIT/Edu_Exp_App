@@ -7,8 +7,8 @@ import datetime as pydatetime
 import pandas as pd
 import openpyxl
 
-# from test_page import SecondWindowCls
-from tmp_test_page import tmpSecondWindowCls
+# from test_page import SecondWindowCls # 3rd page 포함한 정상작동 x 버전 (confidence 받는 부분 포함, 멈추는 코드) # 45line도
+from tmp_test_page import tmpSecondWindowCls # 3rd page 제외한 정상작동 버전 (confidence page 제외) # 46line도 주석
 
 form_class = uic.loadUiType("ui/main_page.ui")[0]
 
