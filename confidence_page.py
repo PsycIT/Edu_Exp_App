@@ -9,11 +9,11 @@ import pandas as pd
 form_3rd_cls = uic.loadUiType("ui/confidence_widget.ui")[0]
 
 class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
-    def __init__(self, mainInfoDict, teCnt):
+    def __init__(self, mainInfoDict, teCnt, parent_widget):
         super(ThirdWindowCls, self).__init__()
         self.initUi(mainInfoDict, teCnt)
         # self.initUi()
-        self.show()
+        # self.show()
 
         # 선택지
         self.cnfRBtn1.clicked.connect(self.cnfRadioBtn_clicked)
@@ -24,6 +24,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
 
         self.cnfSubmitBtn.clicked.connect(self.cnfSubmitBtn_cicked)
 
+        self.parent_widget = parent_widget
 
     def initUi(self, mainInfo, teCnt):
     # def initUi(self):
@@ -31,6 +32,8 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
 
         self.infoDict = mainInfo
         self.cnfCnt = teCnt
+        stateOfCnfCnt = str(self.cnfCnt) + ' / 5'
+        self.cnfCntLabel.setText(stateOfCnfCnt)
         self.cnfStartTs = self.get_now_timestamp()
 
         # self.df2 = pd.DataFrame([['CONFIDENCE'+str(self.cnfCnt)+'_START', self.cnfStartTs, -1, -1]],
@@ -59,14 +62,20 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
         # confidence 받아오는 창 다녀오기 필요
 
         # self.df2.append({'status':'TE'+str(self.cnfCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
-        self.df4 = pd.DataFrame([['CONFIDENCE'+str(self.cnfCnt)+'_END', self.cnfEndTs, self.cnfAns, -1]],
+        self.df4 = pd.DataFrame([['CONFIDENCE'+str(self.cnfCnt)+'_END', self.cnfEndTs, -1, self.cnfAns]],
                                 index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
         self.infoDict['idxCnt'] += 1
         self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
 
         self.cnfCnt += 1
 
-        self.close()
+        self.hide()
+
+        if self.cnfCnt < 6 :
+            self.parent_widget.show()
+        else:
+            self.close()
+        # sys.exit(ui.exec_())
 
 
     def get_now(self):

@@ -87,6 +87,7 @@ class tmpSecondWindowCls(QDialog, QWidget, form_2nd_cls):
         else:
             self.close()
 
+
     def updateUI(self):
         self.teAns = 0
         questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resize.jpg")
@@ -102,13 +103,6 @@ class tmpSecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.infoDict['idxCnt'] += 1
 
         self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
-
-        # 문제 변경 필요
-        # self.teAns = 0
-        # questPixmap = QPixmap("imgs/questions/2_resize.jpg")
-        # self.testLabel.setPixmap(questPixmap)
-        # self.testLabel.resize(questPixmap.width(), questPixmap.height())
-        # if self.testCnt < 5:
 
 
     def homeBtn_cicked(self):

@@ -6,9 +6,11 @@ from PyQt5 import uic
 import datetime as pydatetime
 import pandas as pd
 import openpyxl
+import os
 
-# from test_page import SecondWindowCls # 3rd page 포함한 정상작동 x 버전 (confidence 받는 부분 포함, 멈추는 코드) # 45line도
-from tmp_test_page import tmpSecondWindowCls # 3rd page 제외한 정상작동 버전 (confidence page 제외) # 46line도 주석
+
+from test_page import SecondWindowCls # 3rd page 포함한 정상작동 x 버전 (confidence 받는 부분 포함, 멈추는 코드) # 45line도
+# from tmp_test_page import tmpSecondWindowCls # 3rd page 제외한 정상작동 버전 (confidence page 제외) # 46line도 주석
 
 form_class = uic.loadUiType("ui/main_page.ui")[0]
 
@@ -26,6 +28,7 @@ class WindowCls(QMainWindow, form_class) :
 
         self.submitBtn.clicked.connect(self.submitBtn_clicked)
 
+
     def submitBtn_clicked(self):
         self.mainEndTs = self.get_now_timestamp()
         self.expInfoDict['name'] = self.nameLEdit.text()
@@ -39,13 +42,19 @@ class WindowCls(QMainWindow, form_class) :
 
         print('expInfo', self.expInfoDict)
 
+        if not os.path.exists('output/'):
+            os.makedirs('output/')
         self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=True)
 
         self.hide()
+        self.example_page = SecondWindowCls(self.expInfoDict)
+
         # self.second = SecondWindowCls(self.expInfoDict)
-        self.second = tmpSecondWindowCls(self.expInfoDict)
-        self.second.exec()
-        self.show()
+        # # self.second = tmpSecondWindowCls(self.expInfoDict)
+        # self.second.exec()
+        # self.show()
+
+        self.example_page.show()
 
 
     def get_now(self):
@@ -57,22 +66,6 @@ class WindowCls(QMainWindow, form_class) :
         return self.get_now().timestamp()
 
         #QMessageBox.about(self, '선택된 항목', msg+'선택됨')
-
-
-# class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
-#     def __init__(self):
-#         super(SecondWindowCls, self).__init__()
-#         self.initUi()
-#         self.show()
-#
-#         # self.teSubmitBtn.clicked.connect(self.teSubmitBtn_cicked)
-#         self.homeBtn.clicked.connect(self.teSubmitBtn_cicked)
-#
-#     def initUi(self):
-#         self.setupUi(self)
-#
-#     def teSubmitBtn_cicked(self):
-#         self.close()
 
 
 

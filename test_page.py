@@ -14,7 +14,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         super(SecondWindowCls, self).__init__()
         self.initUi(mainInfoDict)
         # self.initUi()
-        self.show()
+        # self.show()
 
         # 선택지
         self.ansRBtn1.clicked.connect(self.radioBtn_clicked)
@@ -65,8 +65,6 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         QMessageBox.about(self, '선택정답', str(self.teAns)+'번')
         self.teEndTs = self.get_now_timestamp()
 
-        # confidence 받아오는 창 다녀오기 필요
-
         # self.df2.append({'status':'TE'+str(self.testCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
         self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END', self.teEndTs, self.teAns, -1]],
                                 index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
@@ -74,16 +72,19 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
 
         self.hide()
-        self.third = ThirdWindowCls(self.infoDict, self.testCnt)
-        self.third.exec()
-        self.show()
+        self.confidence_page = ThirdWindowCls(self.infoDict, self.testCnt, self)
+        # self.third = ThirdWindowCls(self.infoDict, self.testCnt)
+        # self.third.exec()
+        # self.show()
 
-        self.testCnt += 1
 
-        if self.testCnt < 5:
+        if self.testCnt < 6:
+            self.testCnt += 1
             self.updateUI()
+            self.confidence_page.show()
         else:
             self.close()
+
 
     def updateUI(self):
         self.teAns = 0
@@ -100,13 +101,6 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.infoDict['idxCnt'] += 1
 
         self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
-
-        # 문제 변경 필요
-        # self.teAns = 0
-        # questPixmap = QPixmap("imgs/questions/2_resize.jpg")
-        # self.testLabel.setPixmap(questPixmap)
-        # self.testLabel.resize(questPixmap.width(), questPixmap.height())
-        # if self.testCnt < 5:
 
 
     def homeBtn_cicked(self):
