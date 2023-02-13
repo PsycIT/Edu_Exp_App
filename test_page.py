@@ -1,3 +1,4 @@
+import os
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -48,15 +49,27 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.expTypeLabel2.setText(self.infoDict['expType'])
 
         self.testIdxList = []
-        if self.expTypeLabel2.text() == 'Pre-TEST':
-            self.testIdxList = [1, 3, 5, 7, 9]
-        else:
-            self.testIdxList = [2, 4, 6, 8, 10]
-        print(self.testIdxList)
+        # if self.expTypeLabel2.text() == 'Pre-Test':
+        #     self.testIdxList = [1, 3, 5, 7, 9]
+        # else:
+        #     self.testIdxList = [0, 2, 4, 6, 8]
+        # print(self.testIdxList)
+
+        self.imgFullPath = 'imgs/resizing2/' + str(self.testCnt) + '/'
+        self.imgList = os.listdir(self.imgFullPath)
+        self.imgList.sort()
 
 
         self.teAns = 0
-        questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resize.jpg")
+
+        self.imgIdx = 0
+        if self.expTypeLabel2.text() == 'Pre-Test':
+            self.imgIdx = self.testCnt * 2 - 1
+        else:
+            self.imgIdx = self.testCnt * 2 - 2
+
+        # questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resizing.jpg")
+        questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
@@ -98,7 +111,12 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
     def updateUI(self):
         self.teAns = 0
-        questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resize.jpg")
+        if self.expTypeLabel2.text() == 'Pre-Test':
+            self.imgIdx = self.testCnt * 2 - 1
+        else:
+            self.imgIdx = self.testCnt * 2 - 2
+
+        questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
