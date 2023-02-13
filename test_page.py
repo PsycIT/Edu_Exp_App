@@ -33,6 +33,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         self.infoDict = mainInfo
         self.testCnt = 1
+        self.lectureCnt = 1
         self.teStartTs = self.get_now_timestamp()
 
         self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1]],
@@ -66,7 +67,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.teEndTs = self.get_now_timestamp()
 
         # self.df2.append({'status':'TE'+str(self.testCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
-        self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END', self.teEndTs, self.teAns, -1]],
+        self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END&CONF'+str(self.testCnt)+'_START', self.teEndTs, self.teAns, -1]],
                                 index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
         self.infoDict['idxCnt'] += 1
         self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
@@ -95,12 +96,12 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         stateOfTestCnt = str(self.testCnt) + ' / 5'
         self.testCntLabel.setText(stateOfTestCnt)
 
-        self.teStartTs = self.get_now_timestamp()
-        self.df2 = pd.DataFrame([['CONF'+str(self.testCnt-1)+'_START', self.teStartTs, -1, -1]],
-                               index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
-        self.infoDict['idxCnt'] += 1
+        # self.teStartTs = self.get_now_timestamp()
+        # self.df2 = pd.DataFrame([['CONF'+str(self.testCnt-1)+'_START', self.teStartTs, -1, -1]],
+        #                        index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
+        # self.infoDict['idxCnt'] += 1
 
-        self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
+        # self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
 
 
     def homeBtn_cicked(self):
