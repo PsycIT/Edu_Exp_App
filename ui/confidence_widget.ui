@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>787</width>
+    <width>862</width>
     <height>292</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>741</width>
+     <width>821</width>
      <height>251</height>
     </rect>
    </property>
@@ -36,7 +36,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>611</width>
+      <width>671</width>
       <height>61</height>
      </rect>
     </property>
@@ -52,10 +52,10 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>30</y>
-       <width>471</width>
-       <height>16</height>
+       <x>60</x>
+       <y>19</y>
+       <width>501</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -73,7 +73,7 @@
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>611</width>
+      <width>671</width>
       <height>91</height>
      </rect>
     </property>
@@ -221,7 +221,7 @@
    <widget class="QPushButton" name="cnfSubmitBtn">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>700</x>
       <y>110</y>
       <width>101</width>
       <height>81</height>
@@ -239,7 +239,7 @@
    <widget class="QGroupBox" name="etcGBox">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>700</x>
       <y>20</y>
       <width>101</width>
       <height>61</height>
