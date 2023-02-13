@@ -34,6 +34,7 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['name'] = self.nameLEdit.text()
         self.expInfoDict['birth'] = self.birthLEdit.text()
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
+        self.expInfoDict['expType'] = self.expTypeCBox.currentText()
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
         self.expInfoDict['fileName'] = 'output/' + self.nowTime + '_' \
                                        + self.expInfoDict['name'] + '_' \

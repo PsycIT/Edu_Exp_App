@@ -45,6 +45,15 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.nameLabel2.setText(self.infoDict['name'])
         self.birthLabel2.setText(self.infoDict['birth'])
         self.expCntLabel2.setText(self.infoDict['expCnt'])
+        self.expTypeLabel2.setText(self.infoDict['expType'])
+
+        self.testIdxList = []
+        if self.expTypeLabel2.text() == 'Pre-TEST':
+            self.testIdxList = [1, 3, 5, 7, 9]
+        else:
+            self.testIdxList = [2, 4, 6, 8, 10]
+        print(self.testIdxList)
+
 
         self.teAns = 0
         questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resize.jpg")

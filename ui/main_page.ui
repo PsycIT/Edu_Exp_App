@@ -20,11 +20,11 @@
       <x>300</x>
       <y>210</y>
       <width>191</width>
-      <height>121</height>
+      <height>147</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="expCntLabel">
        <property name="font">
         <font>
@@ -39,7 +39,19 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="nameLEdit">
+       <property name="font">
+        <font>
+         <family>나눔스퀘어_ac</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>InTaekJung</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
       <widget class="QLabel" name="birthLabel">
        <property name="font">
         <font>
@@ -54,7 +66,19 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="expCntLEdit">
+       <property name="font">
+        <font>
+         <family>나눔스퀘어_ac</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QLabel" name="nameLabel">
        <property name="font">
         <font>
@@ -69,7 +93,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="5" column="1">
       <widget class="QPushButton" name="submitBtn">
        <property name="font">
         <font>
@@ -81,19 +105,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="nameLEdit">
-       <property name="font">
-        <font>
-         <family>나눔스퀘어_ac</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>InTaekJung</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <widget class="QLineEdit" name="birthLEdit">
        <property name="font">
         <font>
@@ -105,16 +117,30 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="expCntLEdit">
+     <item row="4" column="0">
+      <widget class="QLabel" name="label">
        <property name="font">
         <font>
          <family>나눔스퀘어_ac</family>
         </font>
        </property>
        <property name="text">
-        <string>1</string>
+        <string>실험유형</string>
        </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QComboBox" name="expTypeCBox">
+       <item>
+        <property name="text">
+         <string>Pre-Test</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Post-Test</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
