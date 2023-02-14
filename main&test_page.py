@@ -41,6 +41,7 @@ class WindowCls(QMainWindow, form_class) :
                                        + self.expInfoDict['expCnt'] \
                                        + self.expInfoDict['expType'] \
                                        + '.csv'
+
         print('expInfo', self.expInfoDict)
 
         if not os.path.exists('output/'):
