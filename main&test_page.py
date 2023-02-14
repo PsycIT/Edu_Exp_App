@@ -34,13 +34,13 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['name'] = self.nameLEdit.text()
         self.expInfoDict['birth'] = self.birthLEdit.text()
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
-        self.expInfoDict['expType'] = self.expTypeCBox.currentText()
+        self.expInfoDict['expType'] = self.expTypeCBox.currentText().split('-')[0]
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
         self.expInfoDict['fileName'] = 'output/' + self.nowTime + '_' \
                                        + self.expInfoDict['name'] + '_' \
                                        + self.expInfoDict['expCnt'] \
+                                       + self.expInfoDict['expType'] \
                                        + '.csv'
-
         print('expInfo', self.expInfoDict)
 
         if not os.path.exists('output/'):
