@@ -37,8 +37,8 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['expType'] = self.expTypeCBox.currentText().split('-')[0]
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
         self.expInfoDict['fileName'] = 'output/' + self.nowTime + '_' \
-                                       + self.expInfoDict['name'] + '_' \
-                                       + self.expInfoDict['expCnt'] \
+                                       + self.expInfoDict['name'] + '_exp' \
+                                       + self.expInfoDict['expCnt'] + '_' \
                                        + self.expInfoDict['expType'] \
                                        + '.csv'
 
