@@ -34,18 +34,19 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['name'] = self.nameLEdit.text()
         self.expInfoDict['birth'] = self.birthLEdit.text()
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
-        self.expInfoDict['expType'] = self.expTypeCBox.currentText().split('-')[0]
+        self.expInfoDict['expType'] = self.expTypeCBox.currentText()
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
-        self.expInfoDict['fileName'] = 'output/' + self.nowTime + '_' \
-                                       + self.expInfoDict['name'] + '_exp' \
-                                       + self.expInfoDict['expCnt'] + '_' \
-                                       + self.expInfoDict['expType'] \
+        self.expInfoDict['fileName'] = 'output/' + self.expInfoDict['name'] + '/'\
+                                       + self.nowTime + '_' \
+                                       + self.expInfoDict['name'] + '_' \
+                                       + self.expInfoDict['expType'] + '_' \
+                                       + self.expInfoDict['expCnt']\
                                        + '.csv'
 
         print('expInfo', self.expInfoDict)
 
-        if not os.path.exists('output/'):
-            os.makedirs('output/')
+        if not os.path.exists('output/' + self.expInfoDict['name'] + '/'):
+            os.makedirs('output/' + self.expInfoDict['name'] + '/')
         self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=True)
 
         self.hide()

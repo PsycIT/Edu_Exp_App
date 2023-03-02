@@ -62,14 +62,13 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.teAns = 0
 
         self.imgIdx = 0
-        if self.expTypeLabel2.text() == 'Pre':
+        if self.expTypeLabel2.text() == 'Pre-Test':
             self.imgIdx = self.testCnt * 2 - 1
         else:
             self.imgIdx = self.testCnt * 2 - 2
 
         # questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resizing.jpg")
         questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
-        print('1st img name', self.imgFullPath, self.imgList[self.imgIdx])
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
@@ -122,17 +121,14 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.ansRBtn5.setChecked(False)
         self.radioGroup.setExclusive(True)
 
-        print('\n\n******\t expType', self.expTypeLabel2.text())
         self.teAns = 0
-        if self.expTypeLabel2.text() == 'Pre':
+        if self.expTypeLabel2.text() == 'Pre-Test':
             self.imgIdx = self.testCnt * 2 - 1
         else:
             self.imgIdx = self.testCnt * 2 - 2
 
 
         questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
-        print('2nd img name', self.imgFullPath, self.imgList[self.imgIdx])
-
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
