@@ -20,7 +20,7 @@ class WindowCls(QMainWindow, form_class) :
         super().__init__()
         self.mainStartTs = self.get_now_timestamp()
         self.expInfoDict = {"name":"", "expCnt":"", "1st_ts":str(self.mainStartTs), "idxCnt":0}
-        self.df = pd.DataFrame([['EXP_START', self.mainStartTs, -1, -1, 0]],
+        self.df = pd.DataFrame([['EXP_START', self.mainStartTs, -1, -1, -1]],
                                index=[self.expInfoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence', 'res'])
         self.expInfoDict['idxCnt'] += 1
         self.nowTime = pydatetime.datetime.today().strftime("%Y%m%d%H%M")
@@ -36,7 +36,7 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
         self.expInfoDict['expType'] = self.expTypeCBox.currentText()
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
-        self.expInfoDict['fileName'] = 'output/' + self.expInfoDict['name'] + '/'\
+        self.expInfoDict['fileName'] = 'output/test/' + self.expInfoDict['name'] + '/'\
                                        + self.nowTime + '_' \
                                        + self.expInfoDict['name'] + '_' \
                                        + self.expInfoDict['expType'] + '_' \
@@ -45,8 +45,8 @@ class WindowCls(QMainWindow, form_class) :
 
         print('expInfo', self.expInfoDict)
 
-        if not os.path.exists('output/' + self.expInfoDict['name'] + '/'):
-            os.makedirs('output/' + self.expInfoDict['name'] + '/')
+        if not os.path.exists('output/test/' + self.expInfoDict['name'] + '/'):
+            os.makedirs('output/test/' + self.expInfoDict['name'] + '/')
         # self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=True)
         self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=False)
 

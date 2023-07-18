@@ -73,7 +73,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
             # # self.df2.append({'status':'TE'+str(self.cnfCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
             # self.df4 = pd.DataFrame([['CONF'+str(self.cnfCnt)+'_END&TE'+str(self.cnfCnt+1)+'_START', self.cnfEndTs, -1, self.cnfAns]],
             #                         index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
-            self.df4 = pd.DataFrame([[statusMsg, self.cnfEndTs, -1, self.cnfAns]])
+            self.df4 = pd.DataFrame([[statusMsg, self.cnfEndTs, -1, self.cnfAns, -1]])
             self.infoDict['idxCnt'] += 1
             # self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
             self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=False)

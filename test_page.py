@@ -47,7 +47,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.testCnt = 1
         self.teStartTs = self.get_now_timestamp()
 
-        self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1, 0]],
+        self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1, -1]],
                                index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence', 'res'])
         self.infoDict['idxCnt'] += 1
 
@@ -90,6 +90,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
 
     def teSubmitBtn_cicked(self):
+        global ans_dict
         # QMessageBox.about(self, '선택정답', str(self.teAns)+'번')
         if self.teAns == 0:
             QMessageBox.information(self, 'error!', '정답을 선택하세요!')
@@ -97,9 +98,14 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         else:
             self.teEndTs = self.get_now_timestamp()
 
+            ans_dict_str = str(self.infoDict['expType']) + '_' + str(self.infoDict['expCnt']) +'-'+ str(self.testCnt)
+            ans_res = -1
+            if int(self.teAns) == int(ans_dict[ans_dict_str]): ans_res = 1
+            else: ans_res = 0
+
             # self.df2.append({'status':'TE'+str(self.testCnt)+'_END', 'ts':self.teEndTs, 'ans':self.teAns, 'confidence':-1}, ignore_index=True)
-            self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END&CONF'+str(self.testCnt)+'_START', self.teEndTs, self.teAns, -1]],
-                                    index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
+            self.df3 = pd.DataFrame([['TE'+str(self.testCnt)+'_END&CONF'+str(self.testCnt)+'_START', self.teEndTs, self.teAns, -1, ans_res]],
+                                    index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence', 'res'])
             self.infoDict['idxCnt'] += 1
             # self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
             self.df3.to_csv(self.infoDict['fileName'], mode='a', header=False, index=False)
@@ -129,9 +135,9 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.radioGroup.setExclusive(True)
 
         self.teAns = 0
-        if self.expTypeLabel2.text() == 'Pre-Test':
+        if self.expTypeLabel2.text() == 'pre':
             self.imgIdx = self.testCnt * 2 - 1
-        else:
+        elif self.expTypeLabel2.text() == 'post':
             self.imgIdx = self.testCnt * 2 - 2
 
 
