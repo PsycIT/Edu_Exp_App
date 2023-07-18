@@ -122,7 +122,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         df = pd.read_csv(resFile)
         df_inCorr = df[df['res'] == 0]
         df_corr = df[df['res'] == 1]
-
+#testet
         # df index에서 2를 나누면 문제 번호 (ex. idx 2인 경우 -> 1번 문제)
         inCorrAnsIdx = df.index[df['res'] == 0].tolist()
         inCorrConfIdx = [i+1 for i in inCorrAnsIdx]
