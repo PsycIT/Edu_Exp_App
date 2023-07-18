@@ -12,7 +12,7 @@ import os
 from test_page import SecondWindowCls # 3rd page 포함한 정상작동 x 버전 (confidence 받는 부분 포함, 멈추는 코드) # 45line도
 # from tmp_test_page import tmpSecondWindowCls # 3rd page 제외한 정상작동 버전 (confidence page 제외) # 46line도 주석
 
-form_class = uic.loadUiType("ui/main_page.ui")[0]
+form_class = uic.loadUiType("ui/test_main_page.ui")[0]
 
 class WindowCls(QMainWindow, form_class) :
     def __init__(self) :
@@ -36,15 +36,17 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
         self.expInfoDict['expType'] = self.expTypeCBox.currentText()
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
-        self.expInfoDict['fileName'] = 'output/' + self.nowTime + '_' \
+        self.expInfoDict['fileName'] = 'output/' + self.expInfoDict['name'] + '/'\
+                                       + self.nowTime + '_' \
                                        + self.expInfoDict['name'] + '_' \
-                                       + self.expInfoDict['expCnt'] \
+                                       + self.expInfoDict['expType'] + '_' \
+                                       + self.expInfoDict['expCnt']\
                                        + '.csv'
 
         print('expInfo', self.expInfoDict)
 
-        if not os.path.exists('output/'):
-            os.makedirs('output/')
+        if not os.path.exists('output/' + self.expInfoDict['name'] + '/'):
+            os.makedirs('output/' + self.expInfoDict['name'] + '/')
         self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=True)
 
         self.hide()
