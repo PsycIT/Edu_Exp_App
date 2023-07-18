@@ -180,8 +180,8 @@
           <rect>
            <x>10</x>
            <y>20</y>
-           <width>154</width>
-           <height>154</height>
+           <width>91</width>
+           <height>71</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_teSumIcon">
