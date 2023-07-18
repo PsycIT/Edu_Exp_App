@@ -75,7 +75,8 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
             #                         index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
             self.df4 = pd.DataFrame([[statusMsg, self.cnfEndTs, -1, self.cnfAns]])
             self.infoDict['idxCnt'] += 1
-            self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
+            # self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
+            self.df4.to_csv(self.infoDict['fileName'], mode='a', header=False, index=False)
 
             self.cnfCnt += 1
 

@@ -24,7 +24,20 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="3" column="0">
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="nameLEdit">
+       <property name="font">
+        <font>
+         <family>나눔스퀘어_ac</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>InTaekJung</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
       <widget class="QLabel" name="expCntLabel">
        <property name="font">
         <font>
@@ -40,36 +53,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="nameLEdit">
-       <property name="font">
-        <font>
-         <family>나눔스퀘어_ac</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>InTaekJung</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="birthLabel">
-       <property name="font">
-        <font>
-         <family>나눔스퀘어_ac</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>생년월일</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
+     <item row="2" column="1">
       <widget class="QLineEdit" name="expCntLEdit">
        <property name="font">
         <font>
@@ -79,6 +63,62 @@
        </property>
        <property name="text">
         <string>1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="expTypeCBox">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>pre</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>final</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>post</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="expTypeLabel">
+       <property name="font">
+        <font>
+         <family>나눔스퀘어_ac</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>실험유형</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="startBtn">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>나눔스퀘어_ac</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>문제풀이 시작</string>
        </property>
       </widget>
      </item>
@@ -98,78 +138,14 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
-      <widget class="QPushButton" name="submitBtn">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>나눔스퀘어_ac</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>문제풀이 시작</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="birthLEdit">
-       <property name="font">
-        <font>
-         <family>나눔스퀘어_ac</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string extracomment="ex. 901114">901114</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <family>나눔스퀘어_ac</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>실험유형</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QComboBox" name="expTypeCBox">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <item>
-        <property name="text">
-         <string>Pre-Test</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Post-Test</string>
-        </property>
-       </item>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="titleLabel">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>170</x>
       <y>110</y>
-      <width>421</width>
+      <width>440</width>
       <height>41</height>
      </rect>
     </property>
@@ -180,7 +156,7 @@
      </font>
     </property>
     <property name="text">
-     <string>[미프] 온라인 강의 시청 실험</string>
+     <string>[시선응답] Lecture &amp; Test</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

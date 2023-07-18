@@ -12,13 +12,13 @@ import os
 from test_page import SecondWindowCls # 3rd page 포함한 정상작동 x 버전 (confidence 받는 부분 포함, 멈추는 코드) # 45line도
 # from tmp_test_page import tmpSecondWindowCls # 3rd page 제외한 정상작동 버전 (confidence page 제외) # 46line도 주석
 
-form_class = uic.loadUiType("ui/test_main_page.ui")[0]
+form_class = uic.loadUiType("ui/feedback_main_page.ui")[0]
 
 class WindowCls(QMainWindow, form_class) :
     def __init__(self) :
         super().__init__()
         self.mainStartTs = self.get_now_timestamp()
-        self.expInfoDict = {"name":"", "birth":"", "expCnt":"", "1st_ts":str(self.mainStartTs), "idxCnt":0}
+        self.expInfoDict = {"name":"", "expCnt":"", "1st_ts":str(self.mainStartTs), "idxCnt":0}
         self.df = pd.DataFrame([['EXP_START', self.mainStartTs, -1, -1]],
                                index=[self.expInfoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
         self.expInfoDict['idxCnt'] += 1
@@ -32,7 +32,6 @@ class WindowCls(QMainWindow, form_class) :
     def submitBtn_clicked(self):
         self.mainEndTs = self.get_now_timestamp()
         self.expInfoDict['name'] = self.nameLEdit.text()
-        self.expInfoDict['birth'] = self.birthLEdit.text()
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
         self.expInfoDict['expType'] = self.expTypeCBox.currentText()
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
@@ -47,7 +46,8 @@ class WindowCls(QMainWindow, form_class) :
 
         if not os.path.exists('output/' + self.expInfoDict['name'] + '/'):
             os.makedirs('output/' + self.expInfoDict['name'] + '/')
-        self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=True)
+        # self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=True)
+        self.df.to_csv(self.expInfoDict['fileName'], mode='a', header=True, index=False)
 
         self.hide()
         self.example_page = SecondWindowCls(self.expInfoDict)

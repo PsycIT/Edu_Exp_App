@@ -10,17 +10,12 @@ import pandas as pd
 form_2nd_cls = uic.loadUiType("ui/test_widget.ui")[0]
 from confidence_page import ThirdWindowCls
 
-global ans_dict
-
-
 class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
     def __init__(self, mainInfoDict):
         super(SecondWindowCls, self).__init__()
         self.initUi(mainInfoDict)
         # self.initUi()
         # self.show()
-
-        self.set_ans_info()
 
         # 선택지
         self.ansRBtn1.clicked.connect(self.radioBtn_clicked)
@@ -37,7 +32,6 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         self.teSubmitBtn.clicked.connect(self.teSubmitBtn_cicked)
 
-        # global ans_pre_dict, ans_post_dict, ans_final_dict
 
     def initUi(self, mainInfo):
     # def initUi(self):
@@ -47,8 +41,8 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.testCnt = 1
         self.teStartTs = self.get_now_timestamp()
 
-        self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1, 0]],
-                               index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence', 'res'])
+        self.df2 = pd.DataFrame([['TE'+str(self.testCnt)+'_START', self.teStartTs, -1, -1]],
+                               index=[self.infoDict['idxCnt']], columns=['status', 'ts', 'ans', 'confidence'])
         self.infoDict['idxCnt'] += 1
 
         # self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=True)
@@ -68,9 +62,9 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.teAns = 0
 
         self.imgIdx = 0
-        if self.expTypeLabel2.text() == 'pre':
+        if self.expTypeLabel2.text() == 'Pre-Test':
             self.imgIdx = self.testCnt * 2 - 1
-        elif self.expTypeLabel2.text() == 'post':
+        else:
             self.imgIdx = self.testCnt * 2 - 2
 
         # questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resizing.jpg")
@@ -158,23 +152,3 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
     def get_now_timestamp(self):
         # 현재 시스템 시간을 POSIX timestamp float형으로 반환
         return self.get_now().timestamp()
-
-    def set_ans_info(self):
-        global ans_dict
-        ans_dict = {'pre_1-1': 5, 'pre_1-2': 5, 'pre_1-3': 5, 'pre_1-4': 5, 'pre_1-5': 5,
-                    'pre_2-1': 5, 'pre_2-2': 5, 'pre_2-3': 5, 'pre_2-4': 5, 'pre_2-5': 5,
-                    'pre_3-1': 5, 'pre_3-2': 5, 'pre_3-3': 5, 'pre_3-4': 5, 'pre_3-5': 5,
-                    'pre_4-1': 5, 'pre_4-2': 5, 'pre_4-3': 5, 'pre_4-4': 5, 'pre_4-5': 5,
-                    'pre_5-1': 5, 'pre_5-2': 5, 'pre_5-3': 5, 'pre_5-4': 5, 'pre_5-5': 5,
-
-                    'post_1-1': 5, 'post_1-2': 5, 'post_1-3': 5, 'post_1-4': 5, 'post_1-5': 5,
-                    'post_2-1': 5, 'post_2-2': 5, 'post_2-3': 5, 'post_2-4': 5, 'post_2-5': 5,
-                    'post_3-1': 5, 'post_3-2': 5, 'post_3-3': 5, 'post_3-4': 5, 'post_3-5': 5,
-                    'post_4-1': 5, 'post_4-2': 5, 'post_4-3': 5, 'post_4-4': 5, 'post_4-5': 5,
-                    'post_5-1': 5, 'post_5-2': 5, 'post_5-3': 5, 'post_5-4': 5, 'post_5-5': 5,
-
-                    'final_1-1': 5, 'final_1-2': 5, 'final_1-3': 5, 'final_1-4': 5, 'final_1-5': 5,
-                    'final_2-1': 5, 'final_2-2': 5, 'final_2-3': 5, 'final_2-4': 5, 'final_2-5': 5,
-                    'final_3-1': 5, 'final_3-2': 5, 'final_3-3': 5, 'final_3-4': 5, 'final_3-5': 5,
-                    'final_4-1': 5, 'final_4-2': 5, 'final_4-3': 5, 'final_4-4': 5, 'final_4-5': 5,
-                    'final_5-1': 5, 'final_5-2': 5, 'final_5-3': 5, 'final_5-4': 5, 'final_5-5': 5}
