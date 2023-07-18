@@ -6,8 +6,9 @@ from PyQt5 import uic
 
 import datetime as pydatetime
 import pandas as pd
+import numpy as np
 # from PIL import Image
-form_2nd_cls = uic.loadUiType("ui/feedback_widget.ui")[0]
+form_2nd_cls = uic.loadUiType("ui/feedback_widget2.ui")[0]
 
 class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
     def __init__(self, mainInfoDict):
@@ -27,15 +28,17 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.infoDict = mainInfo
         self.testCnt = 1
         self.teStartTs = self.get_now_timestamp()
+        self.corrList = []
+        self.inCorrList = []
 
         self.df2 = pd.DataFrame([['FDB'+str(self.testCnt)+'_START', self.teStartTs]],
                                index=[self.infoDict['idxCnt']], columns=['status', 'ts'])
         self.infoDict['idxCnt'] += 1
         self.df2.to_csv(self.infoDict['fileName'], mode='a', header=False, index=False)
 
-        self.nameLabel2.setText(self.infoDict['name'])
-        self.expCntLabel2.setText(self.infoDict['expCnt'])
-        self.expTypeLabel2.setText("Post-TEST")
+        # self.nameLabel2.setText(self.infoDict['name'])
+        # self.expCntLabel2.setText(self.infoDict['expCnt'])
+        # self.expTypeLabel2.setText("Post-TEST")
 
         # 문제풀이 결과, AoI 정보 업데이트하는 함수 추가 (엑셀 읽어서 데이터 받아오기)
         result_fPath = 'output/test/post/'
@@ -107,8 +110,43 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
     def get_test_result(self, fPath):
         resFileList = os.listdir(fPath)
         resFileList.sort(reverse=True)
+        resFile = ''
 
-        for resFile in resFileList:
-            validChk = resFile.split('.')[1].split('_')[2:]
-            print(validChk)
+        for resF in resFileList:
+            validChkStr = resF.split('.')[0].split('_')[-1]
+            if validChkStr == self.infoDict['expCnt']:
+                resFile = os.path.join(fPath, resF)
+                break
+        print(resFile)
+
+        df = pd.read_csv(resFile)
+        df_inCorr = df[df['res'] == 0]
+        df_corr = df[df['res'] == 1]
+
+        # df index에서 2를 나누면 문제 번호 (ex. idx 2인 경우 -> 1번 문제)
+        inCorrAnsIdx = df.index[df['res'] == 0].tolist()
+        inCorrConfIdx = [i+1 for i in inCorrAnsIdx]
+
+        corrIdx = df.index[df['res'] == 1].tolist()
+        df_inCorr_conf = df.iloc[inCorrConfIdx, :]
+        df_inCorr['confidence'] = np.where(df_inCorr['confidence']==-1, df_inCorr_conf['confidence'], df_inCorr['confidence'])
+
+        print(df.iloc[inCorrAnsIdx[0], 2], df.iloc[inCorrAnsIdx[0]+1, 3])
+        print(df.iloc[inCorrAnsIdx, [0, 2]])
+        print(df.iloc[inCorrConfIdx, [3]])
+
+        print(df.iloc[inCorrAnsIdx, :])
+        print('test')
+
+
+
+
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\python37.zip', \
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\DLLs', \
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib', \
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp', \
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages', \
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages\\win32',\
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages\\win32\\lib',\
+'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages\\Pythonwin'
 

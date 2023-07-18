@@ -87,7 +87,7 @@
        <widget class="QLabel" name="teCntLabel">
         <property name="geometry">
          <rect>
-          <x>850</x>
+          <x>580</x>
           <y>840</y>
           <width>56</width>
           <height>12</height>
@@ -242,132 +242,6 @@
          <string>이전문제</string>
         </property>
        </widget>
-       <widget class="QLabel" name="expCntLabel2">
-        <property name="geometry">
-         <rect>
-          <x>680</x>
-          <y>840</y>
-          <width>41</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>나눔스퀘어 Bold</family>
-          <pointsize>12</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>1회차</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="nameTxt2">
-        <property name="geometry">
-         <rect>
-          <x>480</x>
-          <y>840</y>
-          <width>31</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>나눔스퀘어_ac</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>이름: </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="expTypeLabel2">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>840</y>
-          <width>91</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>나눔스퀘어 Bold</family>
-          <pointsize>12</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>POST-TEST</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="expCntTxt2">
-        <property name="geometry">
-         <rect>
-          <x>640</x>
-          <y>840</y>
-          <width>41</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>나눔스퀘어_ac</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>회차:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="expTypeTxt2">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>840</y>
-          <width>31</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>나눔스퀘어_ac</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>유형:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="nameLabel2">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>840</y>
-          <width>91</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>나눔스퀘어 Bold</family>
-          <pointsize>12</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>InTaekJung</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
       </widget>
      </widget>
     </item>
@@ -376,9 +250,9 @@
   <widget class="QLabel" name="titleLabel">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>370</x>
      <y>10</y>
-     <width>421</width>
+     <width>521</width>
      <height>41</height>
     </rect>
    </property>
