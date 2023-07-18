@@ -80,12 +80,12 @@
        </item>
        <item>
         <property name="text">
-         <string>final</string>
+         <string>post</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>post</string>
+         <string>final</string>
         </property>
        </item>
       </widget>

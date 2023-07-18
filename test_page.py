@@ -58,7 +58,6 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.expCntLabel2.setText(self.infoDict['expCnt'])
         self.expTypeLabel2.setText(self.infoDict['expType'])
 
-        self.testIdxList = []
         self.idx4test = int(self.infoDict['expCnt'])
 
         self.imgFullPath = 'imgs/resizing2/' + str(self.idx4test) + '/'
