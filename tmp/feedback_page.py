@@ -6,7 +6,9 @@ from PyQt5 import uic
 
 import datetime as pydatetime
 import pandas as pd
+from itertools import zip_longest
 import numpy as np
+
 # from PIL import Image
 form_2nd_cls = uic.loadUiType("ui/feedback_widget2.ui")[0]
 
@@ -120,33 +122,22 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         print(resFile)
 
         df = pd.read_csv(resFile)
-        df_inCorr = df[df['res'] == 0]
-        df_corr = df[df['res'] == 1]
-#testet
-        # df index에서 2를 나누면 문제 번호 (ex. idx 2인 경우 -> 1번 문제)
-        inCorrAnsIdx = df.index[df['res'] == 0].tolist()
-        inCorrConfIdx = [i+1 for i in inCorrAnsIdx]
+        inCorrAnsIdx = df.index[df['res'] == 0].tolist() # 틀린문제 index 추출
+        corrAnsIdx = df.index[df['res'] == 1].tolist() # 맞춘문제 index 추출
 
-        corrIdx = df.index[df['res'] == 1].tolist()
-        df_inCorr_conf = df.iloc[inCorrConfIdx, :]
-        df_inCorr['confidence'] = np.where(df_inCorr['confidence']==-1, df_inCorr_conf['confidence'], df_inCorr['confidence'])
+        df_inCorr = df.copy().iloc[inCorrAnsIdx, :] # 틀린문제 DataFrame 생성
+        df_corr = df.copy().iloc[corrAnsIdx, :] # 맞춘문제 DataFrame 생성
 
-        print(df.iloc[inCorrAnsIdx[0], 2], df.iloc[inCorrAnsIdx[0]+1, 3])
-        print(df.iloc[inCorrAnsIdx, [0, 2]])
-        print(df.iloc[inCorrConfIdx, [3]])
+        # 다음 행에 존재하는 conf val을 한 행으로 합치기
+        for inCorrIdx, corrIdx in zip_longest(inCorrAnsIdx, corrAnsIdx):
+            if inCorrIdx is not None:
+                df_inCorr.at[inCorrIdx, 'confidence'] = df.at[inCorrIdx + 1, 'confidence']
+            if corrIdx is not None:
+                df_corr.at[corrIdx, 'confidence'] = df.at[corrIdx + 1, 'confidence']
 
-        print(df.iloc[inCorrAnsIdx, :])
-        print('test')
+        print(df_inCorr.head(), '\n', df_corr.head())
 
 
-
-
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\python37.zip', \
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\DLLs', \
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib', \
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp', \
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages', \
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages\\win32',\
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages\\win32\\lib',\
-'C:\\Users\\sci-lab\\anaconda3\\envs\\Edu_exp\\lib\\site-packages\\Pythonwin'
-
+        inCorrCnt, corrCnt = df_inCorr.shape[0], df_corr.shape[0]
+        print('틀린문제: ', inCorrCnt,
+              '\n정답률: ', corrCnt/5)

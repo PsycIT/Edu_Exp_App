@@ -30,7 +30,7 @@ class WindowCls(QMainWindow, form_class) :
 
 
     def startBtn_clicked(self):
-        output_path = 'output/feedback/'
+        output_path = '../output/feedback/'
         self.mainEndTs = self.get_now_timestamp()
         self.expInfoDict['name'] = self.nameLEdit.text()
         self.expInfoDict['expCnt'] = self.expCntLEdit.text()
