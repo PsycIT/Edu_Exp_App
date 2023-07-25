@@ -3,9 +3,9 @@ import os
 import cv2
 import numpy as np
 
-fPath = 'imgs/original/'
+fPath = 'imgs/resizing/1/'
 #fDistPath = 'imgs/resizing/'
-fDistPath = 'imgs/resizing2/'
+fDistPath = 'imgs/resizing2/1/'
 
 if not os.path.exists(fDistPath):
     os.makedirs(fDistPath)
@@ -20,7 +20,8 @@ def setResizeImg(basewidth=600, imgPath="", imgName=""):
     wpercent = (basewidth / float(img.size[0]))
     hsize = int((float(img.size[1]) * float(wpercent)))
     img_resize = img.resize((basewidth, hsize), Image.ANTIALIAS)
-    img_resize.save(fDistPath+imgName+'_resizing.jpg')
+    img_resize.save(fDistPath+imgName+'.jpg')
+    # img_resize.save(fDistPath+imgName+'_resizing.jpg')
 
 
 def setResizeImgOpencv(sizeXY = (620, 580), imgPath="", imgName=""):
@@ -52,6 +53,7 @@ for pic in fList:
     base_pic[int(size[1] / 2 - sizeas[1] / 2):int(size[1] / 2 + sizeas[1] / 2),
     int(size[0] / 2 - sizeas[0] / 2):int(size[0] / 2 + sizeas[0] / 2), :] = pic1
     cv2.imwrite(fDistPath+pic.split('.jpg')[0]+'_resizing.jpg', base_pic)
+    print('Resized ', pic)
 
 # for img in fList:
 #     # setResizeImg(imgPath=fPath, imgName=img)
