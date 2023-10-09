@@ -82,7 +82,7 @@ class tmpSecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         self.testCnt += 1
 
-        if self.testCnt < 6:
+        if self.testCnt < 7:
             self.updateUI()
         else:
             self.close()
@@ -94,7 +94,7 @@ class tmpSecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
-        stateOfTestCnt = str(self.testCnt) + ' / 5'
+        stateOfTestCnt = str(self.testCnt) + ' / 6'
         self.testCntLabel.setText(stateOfTestCnt)
 
         self.teStartTs = self.get_now_timestamp()

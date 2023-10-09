@@ -32,7 +32,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
 
         self.infoDict = mainInfo
         self.cnfCnt = teCnt
-        stateOfCnfCnt = str(self.cnfCnt) + ' / 5'
+        stateOfCnfCnt = str(self.cnfCnt) + ' / 6'
         self.cnfCntLabel.setText(stateOfCnfCnt)
         self.cnfStartTs = self.get_now_timestamp()
 
@@ -65,7 +65,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
             # confidence 받아오는 창 다녀오기 필요
 
             statusMsg = ""
-            if self.cnfCnt < 5:
+            if self.cnfCnt < 6:
                 statusMsg = 'CONF'+str(self.cnfCnt)+'_END&TE'+str(self.cnfCnt+1)+'_START'
             else:
                 statusMsg = 'CONF'+str(self.cnfCnt)+'_END'
@@ -82,7 +82,7 @@ class ThirdWindowCls(QDialog, QWidget, form_3rd_cls):
 
             self.hide()
 
-            if self.cnfCnt < 6 :
+            if self.cnfCnt < 7 :
                 self.parent_widget.updateUI()
                 self.parent_widget.show()
             else:

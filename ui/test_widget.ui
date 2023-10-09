@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>803</width>
-    <height>876</height>
+    <width>829</width>
+    <height>1033</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <rect>
      <x>30</x>
      <y>30</y>
-     <width>741</width>
+     <width>771</width>
      <height>51</height>
     </rect>
    </property>
@@ -163,8 +163,8 @@
     <rect>
      <x>30</x>
      <y>90</y>
-     <width>741</width>
-     <height>781</height>
+     <width>771</width>
+     <height>921</height>
     </rect>
    </property>
    <property name="font">
@@ -181,8 +181,8 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>611</width>
-      <height>641</height>
+      <width>641</width>
+      <height>771</height>
      </rect>
     </property>
     <property name="title">
@@ -193,8 +193,8 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>581</width>
-       <height>621</height>
+       <width>621</width>
+       <height>741</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -212,8 +212,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>680</y>
-      <width>611</width>
+      <y>810</y>
+      <width>641</width>
       <height>71</height>
      </rect>
     </property>
@@ -236,7 +236,7 @@
     <widget class="QRadioButton" name="ansRBtn2">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>160</x>
        <y>30</y>
        <width>31</width>
        <height>16</height>
@@ -249,7 +249,7 @@
     <widget class="QRadioButton" name="ansRBtn3">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>250</x>
        <y>30</y>
        <width>31</width>
        <height>16</height>
@@ -262,7 +262,7 @@
     <widget class="QRadioButton" name="ansRBtn4">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>340</x>
        <y>30</y>
        <width>31</width>
        <height>16</height>
@@ -275,7 +275,7 @@
     <widget class="QRadioButton" name="ansRBtn5">
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>430</x>
        <y>30</y>
        <width>31</width>
        <height>16</height>
@@ -289,8 +289,8 @@
    <widget class="QLabel" name="testCntLabel">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>760</y>
+      <x>350</x>
+      <y>900</y>
       <width>56</width>
       <height>12</height>
      </rect>
@@ -302,7 +302,7 @@
      </font>
     </property>
     <property name="text">
-     <string>1 / 5</string>
+     <string>1 / 6</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -311,8 +311,8 @@
    <widget class="QPushButton" name="teSubmitBtn">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>700</y>
+      <x>660</x>
+      <y>830</y>
       <width>101</width>
       <height>51</height>
      </rect>
@@ -330,10 +330,10 @@
    <widget class="QGroupBox" name="etcGBox">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>660</x>
       <y>30</y>
       <width>101</width>
-      <height>661</height>
+      <height>791</height>
      </rect>
     </property>
     <property name="title">

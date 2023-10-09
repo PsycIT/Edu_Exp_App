@@ -60,17 +60,22 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         self.idx4test = int(self.infoDict['expCnt'])
 
-        self.imgFullPath = 'imgs/resizing2/' + str(self.idx4test) + '/'
+        self.imgFullPath = 'imgs/resizing/' + str(self.idx4test) + '/'
         self.imgList = os.listdir(self.imgFullPath)
         self.imgList.sort()
 
         self.teAns = 0
 
         self.imgIdx = 0
-        if self.expTypeLabel2.text() == 'pre':
+        if self.expTypeLabel2.text() == 'pre_A':
             self.imgIdx = self.testCnt * 2 - 1
-        elif self.expTypeLabel2.text() == 'post':
+        elif self.expTypeLabel2.text() == 'post_A':
             self.imgIdx = self.testCnt * 2 - 2
+
+        elif self.expTypeLabel2.text() == 'pre_B':
+            self.imgIdx = self.testCnt * 2 - 2
+        elif self.expTypeLabel2.text() == 'post_B':
+            self.imgIdx = self.testCnt * 2 - 1
 
         # questPixmap = QPixmap("imgs/questions/" + str(self.testCnt) + "_resizing.jpg")
         questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
@@ -97,7 +102,9 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         else:
             self.teEndTs = self.get_now_timestamp()
 
-            ans_dict_str = str(self.infoDict['expType']) + '_' + str(self.infoDict['expCnt']) +'-'+ str(self.testCnt)
+            # ans_dict_str = str(self.infoDict['expType']) + '_' + str(self.infoDict['expCnt']) +'-'+ str(self.testCnt)
+            ans_dict_str = str(self.imgList[self.imgIdx].split('.')[0])
+            print('ans_dict_str:', ans_dict_str)
             ans_res = -1
             if int(self.teAns) == int(ans_dict[ans_dict_str]): ans_res = 1
             else: ans_res = 0
@@ -116,7 +123,7 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
             # self.show()
 
 
-            if self.testCnt < 6:
+            if self.testCnt < 7:
                 self.testCnt += 1
                 # self.updateUI()
                 self.confidence_page.show()
@@ -134,17 +141,21 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
         self.radioGroup.setExclusive(True)
 
         self.teAns = 0
-        if self.expTypeLabel2.text() == 'pre':
+        if self.expTypeLabel2.text() == 'pre_A':
             self.imgIdx = self.testCnt * 2 - 1
-        elif self.expTypeLabel2.text() == 'post':
+        elif self.expTypeLabel2.text() == 'post_A':
             self.imgIdx = self.testCnt * 2 - 2
 
+        elif self.expTypeLabel2.text() == 'pre_B':
+            self.imgIdx = self.testCnt * 2 - 2
+        elif self.expTypeLabel2.text() == 'post_B':
+            self.imgIdx = self.testCnt * 2 - 1
 
         questPixmap = QPixmap(self.imgFullPath + self.imgList[self.imgIdx])
         self.testLabel.setPixmap(questPixmap)
         self.testLabel.resize(questPixmap.width(), questPixmap.height())
 
-        stateOfTestCnt = str(self.testCnt) + ' / 5'
+        stateOfTestCnt = str(self.testCnt) + ' / 6'
         self.testCntLabel.setText(stateOfTestCnt)
 
 
@@ -166,20 +177,19 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
     def set_ans_info(self):
         global ans_dict
-        ans_dict = {'pre_1-1': 5, 'pre_1-2': 5, 'pre_1-3': 5, 'pre_1-4': 5, 'pre_1-5': 5,
-                    'pre_2-1': 5, 'pre_2-2': 5, 'pre_2-3': 5, 'pre_2-4': 5, 'pre_2-5': 5,
-                    'pre_3-1': 5, 'pre_3-2': 5, 'pre_3-3': 5, 'pre_3-4': 5, 'pre_3-5': 5,
-                    'pre_4-1': 5, 'pre_4-2': 5, 'pre_4-3': 5, 'pre_4-4': 5, 'pre_4-5': 5,
-                    'pre_5-1': 5, 'pre_5-2': 5, 'pre_5-3': 5, 'pre_5-4': 5, 'pre_5-5': 5,
+        ans_dict = {'1_1_1': 3, '1_1_2': 1, '1_1_3': 2, '1_1_4': 4,
+                    '1_2_1': 5, '1_2_2': 2, '1_2_3': 5, '1_2_4': 5,
+                    '1_3_1': 1, '1_3_2': 1, '1_3_3': 5, '1_3_4': 4,
 
-                    'post_1-1': 5, 'post_1-2': 5, 'post_1-3': 5, 'post_1-4': 5, 'post_1-5': 5,
-                    'post_2-1': 5, 'post_2-2': 5, 'post_2-3': 5, 'post_2-4': 5, 'post_2-5': 5,
-                    'post_3-1': 5, 'post_3-2': 5, 'post_3-3': 5, 'post_3-4': 5, 'post_3-5': 5,
-                    'post_4-1': 5, 'post_4-2': 5, 'post_4-3': 5, 'post_4-4': 5, 'post_4-5': 5,
-                    'post_5-1': 5, 'post_5-2': 5, 'post_5-3': 5, 'post_5-4': 5, 'post_5-5': 5,
+                    '2_1_1': 4, '2_1_2': 3, '2_1_3': 4, '2_1_4': 2,
+                    '2_2_1': 5, '2_2_2': 5, '2_2_3': 1, '2_2_4': 4,
+                    '2_3_1': 3, '2_3_2': 3, '2_3_3': 1, '2_3_4': 5,
 
-                    'final_1-1': 5, 'final_1-2': 5, 'final_1-3': 5, 'final_1-4': 5, 'final_1-5': 5,
-                    'final_2-1': 5, 'final_2-2': 5, 'final_2-3': 5, 'final_2-4': 5, 'final_2-5': 5,
-                    'final_3-1': 5, 'final_3-2': 5, 'final_3-3': 5, 'final_3-4': 5, 'final_3-5': 5,
-                    'final_4-1': 5, 'final_4-2': 5, 'final_4-3': 5, 'final_4-4': 5, 'final_4-5': 5,
-                    'final_5-1': 5, 'final_5-2': 5, 'final_5-3': 5, 'final_5-4': 5, 'final_5-5': 5}
+                    '3_1_1': 2, '3_1_2': 1, '3_1_3': 5, '3_1_4': 5,
+                    '3_2_1': 3, '3_2_2': 5, '3_2_3': 5, '3_2_4': 4,
+                    '3_3_1': 4, '3_3_2': 3, '3_3_3': 3, '3_3_4': 3,
+
+                    '4_1_1': 1, '4_1_2': 2, '4_1_3': 5, '4_1_4': 4,
+                    '4_2_1': 4, '4_2_2': 4, '4_2_3': 5, '4_2_4': 3,
+                    '4_3_1': 4, '4_3_2': 5, '4_3_3': 4, '4_3_4': 2
+                    }
