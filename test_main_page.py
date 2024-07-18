@@ -12,8 +12,8 @@ import os
 from test_page import SecondWindowCls # 3rd page 포함한 정상작동 x 버전 (confidence 받는 부분 포함, 멈추는 코드) # 45line도
 # from tmp_test_page import tmpSecondWindowCls # 3rd page 제외한 정상작동 버전 (confidence page 제외) # 46line도 주석
 
-
-form_class = uic.loadUiType("ui/test_main_page.ui")[0]
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+form_class = uic.loadUiType(BASE_DIR+"\\ui\\test_main_page.ui")[0]
 
 class WindowCls(QMainWindow, form_class) :
     def __init__(self) :
@@ -38,7 +38,7 @@ class WindowCls(QMainWindow, form_class) :
         self.expInfoDict['2nd_ts'] = str(self.get_now_timestamp())
         self.expInfoDict['expType'] = self.expTypeCBox.currentText()
         output_path = 'output/test/' + self.expInfoDict['expType'] + '/'
-        self.expInfoDict['fileName'] = output_path \
+        self.expInfoDict['fileName'] = output_path +self.expInfoDict['name'] + '/'\
                                        + self.nowTime + '_' \
                                        + self.expInfoDict['name'] + '_' \
                                        + self.expInfoDict['expType'] + '_' \
