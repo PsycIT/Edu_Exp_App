@@ -7,7 +7,9 @@ from PyQt5 import uic
 import datetime as pydatetime
 import pandas as pd
 # from PIL import Image
-form_2nd_cls = uic.loadUiType("ui/test_widget.ui")[0]
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+form_2nd_cls = uic.loadUiType(BASE_DIR+"\\ui\\test_widget.ui")[0]
+
 from confidence_page import ThirdWindowCls
 
 global ans_dict
@@ -60,7 +62,8 @@ class SecondWindowCls(QDialog, QWidget, form_2nd_cls):
 
         self.idx4test = int(self.infoDict['expCnt'])
 
-        self.imgFullPath = 'imgs/resizing/' + str(self.idx4test) + '/'
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        self.imgFullPath = BASE_DIR+'\\imgs\\resizing\\' + str(self.idx4test) + '\\'
         self.imgList = os.listdir(self.imgFullPath)
         self.imgList.sort()
 
